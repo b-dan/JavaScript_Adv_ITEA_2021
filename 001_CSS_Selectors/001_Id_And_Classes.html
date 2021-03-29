@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Id and classes</title>
+    <style>
+        /* #id1 {
+            color: red;
+        }
+        div.class1 {
+            color: blue;
+            font-size: 14px;
+            text-decoration: underline;
+        } */
+    </style>
+</head>
+<body>
+    <h1 id="id1">Title</h1>
+    <div class="class1" >
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla consequuntur, obcaecati recusandae enim laboriosam eaque, sint incidunt. Perferendis mollitia incidunt blanditiis eveniet, fuga sapiente. Magni dicta maxime fugiat sint soluta?        
+    </div>
+    <input type="button" value="Change"/>
+    <script>
+        let btn = document.getElementsByTagName("input")[0];
+        btn.onclick = function() {
+            let id1 = document.getElementById("id1");
+            let class1 = document.getElementsByClassName("class1")[0];
+
+            id1.style.color = "white";
+            id1.style.marginTop = "10px";
+            id1.style.background = "red";
+
+            class1.style.color = "blue";
+            class1.style.fontSize = "14px";
+            class1.style.textDecoration = "underline";
+            class1.classList.add("newclass");
+
+            let newclass = document.getElementsByClassName("newclass")[0];
+            console.log(newclass.style.cssText);
+        }
+    </script>
+</body>
+</html>
