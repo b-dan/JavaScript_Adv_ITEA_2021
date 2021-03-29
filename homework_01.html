@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" href="style.css">
+    <title>Homework_01</title>
+</head>
+<body style="background-color: #ecf2f2">
+    <ul id="myList"><li id="item1">Первый элемент</li><li id="item2">Второй элемент</li><li id="item3">Третий элемент</li><li id="item4">Четвертый элемент</li></ul>
+    <script>
+        let sibling = null;
+        function chooseFirst() {
+            let list = document.getElementsByTagName("li");
+            for (var i = 0; i < list.length; i++) {
+                if(list[i].hasAttribute("style")){
+                    list[i].removeAttribute("style");
+                }
+            }
+            document.getElementById("myList").lastChild.removeAttribute("style");
+            sibling = document.getElementById("myList").firstChild;
+            sibling.style.color = "red";
+        }
+        function chooseLast() {
+            let list = document.getElementsByTagName("li");
+            for (var i = 0; i < list.length; i++) {
+                if(list[i].hasAttribute("style")){
+                    list[i].removeAttribute("style");
+                }
+            }
+            document.getElementById("myList").firstChild.removeAttribute("style");
+            sibling = document.getElementById("myList").lastChild;
+            sibling.style.color = "red";
+        }
+        function chooseNext() {
+            if(sibling == null ){
+                sibling = document.getElementById("myList").firstChild;
+            }
+            else if(sibling===document.getElementById("myList").lastChild){
+                sibling = document.getElementById("myList").firstChild;
+                document.getElementById("myList").lastChild.removeAttribute("style");
+            }
+            else{
+                sibling = sibling.nextSibling;
+                sibling.previousSibling.removeAttribute("style");
+            }
+            sibling.style.color = "red";     
+        }
+        function choosePrevious() {
+            if(sibling == null ){
+                sibling = document.getElementById("myList").firstChild;
+            }
+            else if(sibling===document.getElementById("myList").firstChild){
+                sibling = document.getElementById("myList").lastChild;
+                document.getElementById("myList").firstChild.removeAttribute("style");
+            }
+            else{
+                sibling = sibling.previousSibling;
+                sibling.nextSibling.removeAttribute("style");
+            }
+            sibling.style.color = "red";
+        }
+        function addElement() {
+            let newElement = document.createElement("li");
+            newElement.innerHTML = "Новый элемент";
+            document.getElementById("myList").appendChild(newElement);
+        }
+        function deleteElement() {
+            if(document.getElementById("myList").childElementCount>0){
+                let lastElement = document.getElementById("myList").lastChild;
+                document.getElementById("myList").removeChild(lastElement);
+            }
+            else alert("No elements left!")
+        }
+        function addBeforeStart() {
+            let newElement = document.createElement("li");
+            newElement.innerHTML = "Новый элемент";
+            document.getElementById("myList").insertBefore(newElement, document.getElementById("myList").firstChild);
+        }
+    </script>
+    <form>
+        <input type="button" class="button" value="Выбрать первый элемент" onclick="chooseFirst()"/><br>
+        <input type="button" class="button" value="Выбрать последний элемент" onclick="chooseLast()"/><br>
+        <input type="button" class="button" value="Выбрать следующий элемент" onclick="chooseNext()"/><br>
+        <input type="button" class="button" value="Выбрать предыдущий элемент" onclick="choosePrevious()"/><br>
+        <input type="button" class="button" value="Добавить элемент" onclick="addElement()"/><br>
+        <input type="button" class="button" value="Удалить элемент" onclick="deleteElement()"/><br>
+        <input type="button" class="button" value="Добавить в начало" onclick="addBeforeStart()"/><br>
+    </form>
+</body>
+</html>
