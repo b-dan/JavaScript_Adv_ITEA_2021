@@ -1,0 +1,59 @@
+<!-- Напишите регулярные выражения, которые будут выбирать 
+    индекс - 55535 - 5 numbers
+    ip адресс, пример 255.255.255.255
+    цены в долларах - $0.84, $1232.84, $4
+    дата в виде - 30/12/2016 - день, месяц, год
+ -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+ 	<meta charset="UTF-8">
+ 	<title>Document</title>
+ </head>
+ <body>
+     Lorem ipsum $1232.84dolor sit amet  55555 consectetur$0.84 66666 adipisicing 88/12/1994elit. Fuga $1232.84deserunt 48961 rerum $4atque vero soluta error 192.168.10.67illo, mollitia hic necessitatibus harum 33125 ipsam veniam! Placeat cumque tempore voluptatibus velit quo quasi dolores.
+ 	 <div>
+     <button onclick="myIndex()">index</button>
+     <button onclick="myIp()">ip</button>
+     <button onclick="myPrice()">price$</button>
+     <button onclick="myDate()">date</button>
+    </div>
+     <div id="out"></div>
+
+     <script type="text/javascript">
+        let text = document.querySelector("body").innerHTML;
+        
+        let index = /\d{5}/g;
+        let date = /\d{1,2}\/\d{1,2}\/\d{4}/g;
+        let ip = /([0-9]{1,3}[\.]){3}[0-9]{1,3}/g;
+        let price = /\$\d{1,}\.?\d{0,2}/g;
+        function myIndex(){
+                document.querySelector("#out").innerHTML = "";
+                let result = text.match(index);
+                myOut(result)
+        }
+        function myDate(){
+               document.querySelector("#out").innerHTML = "";
+               let result = text.match(date);
+               myOut(result)
+        }
+        function myIp(){
+               document.querySelector("#out").innerHTML = "";
+               let result = text.match(ip);
+               myOut(result)
+        }
+        function myPrice(){
+               document.querySelector("#out").innerHTML = "";
+               let result = text.match(price);
+               myOut(result)
+        }
+        function myOut(result){
+                if(result!==null){
+                for(let i = 0; i < result.length; i++){
+                    document.querySelector("#out").innerHTML=(document.querySelector("#out").innerHTML) + " " + result[i] + "</br>";
+                }
+            }
+        }
+ 	</script>
+ </body>
+ </html>
