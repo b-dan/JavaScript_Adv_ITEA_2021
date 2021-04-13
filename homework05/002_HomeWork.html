@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+    <style>
+        #table {
+            display: inline-flex
+        }
+        .block {
+            background-color: royalblue;
+            border: 2px solid red;
+        }
+    </style>
+</head>
+<body>
+    <!--
+    1. Создайте 5 блоков с текстом. Добавьте в каждый из блоков кнопку для его удаления.
+    Используйте только один обработчик.
+
+    
+    
+    2. Доработайте пример 004_Attr_Tech.html таким образом, чтобы при наведении на span элементы,
+    подсказка сплыва под ними, а не в модальном окне. Используйте addEventListener -->
+    <div id="table">
+        <div class="block">
+          <div class="textBlock">Lorem ipsum dolor sit amet consectetur</div>
+          <button class="myButton">Button1</button>
+        </div>
+        <div class="block">
+          <div class="textBlock">Lorem ipsum dolor sit amet consectetur</div>
+          <button class="myButton">Button2</button>
+        </div>
+        <div class="block">
+          <div class="textBlock">Lorem ipsum dolor sit amet consectetur</div>
+          <button class="myButton">Button3</button>
+        </div>
+        <div class="block">
+          <div class="textBlock">Lorem ipsum dolor sit amet consectetur</div>
+          <button class="myButton">Button4</button>
+        </div>
+        <div class="block">
+          <div class="textBlock">Lorem ipsum dolor sit amet consectetur</div>
+          <button class="myButton">Button5</button>
+        </div>
+    </div>
+    <script>
+        let table = document.getElementById('table');
+        if(table){
+            table.addEventListener('click', clickButtonHandler);
+            function clickButtonHandler(e){
+                let target = e.target;
+                let targetText = target.previousElementSibling;
+                if(target.className === 'myButton' && targetText.className === 'textBlock'){
+                    targetText.innerHTML = '';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

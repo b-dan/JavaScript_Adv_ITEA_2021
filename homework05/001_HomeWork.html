@@ -1,0 +1,47 @@
+<!--
+Создайте ссылку и див с текстом внутри, который изначально при загрузке страницы будет скрыт.
+При клике на ссылку див появляется, если повторно нажать ссылку див и текст должны пропасть.
+Также создайте кнопку, которая будет отменять выполнение обработчика клика по ссылке.
+ -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width,user-scalable=no">
+        <script>
+            window.onload = function (){
+                let myDiv = document.getElementById('text');
+                let myLink = document.getElementById('link');
+                let myButton = document.getElementById('myButton');
+                myDiv.style.display = 'none';
+                myLink.addEventListener('click',clickLinkHandler);
+                function clickLinkHandler(e){
+                    if(myDiv.style.display === 'none') myDiv.style.display = 'inline';
+                    else myDiv.style.display = 'none';
+                    e.preventDefault();
+                    return false;
+                }
+
+                myLink.addEventListener('click',clickPreventDefaultHandler);
+                function clickPreventDefaultHandler(e){
+                    e.preventDefault();
+                    return false;
+                }
+
+                myButton.addEventListener('click', clickButtonHandler);
+                function clickButtonHandler() {
+                    myLink.removeEventListener('click',clickLinkHandler);
+                }
+
+            }
+        </script>
+    </head>
+    <body>
+        <div id="text">
+            Создайте ссылку и див с текстом внутри, который изначально при загрузке страницы будет скрыт.
+            При клике на ссылку див появляется, если повторно нажать ссылку див и текст должны пропасть.
+            Также создайте кнопку, которая будет отменять выполнение обработчика клика по ссылке.
+        </div>
+        <a id="link" href="/link">MyLink</a>
+        <button id="myButton">Button</button>
+    </body>
+</html>
