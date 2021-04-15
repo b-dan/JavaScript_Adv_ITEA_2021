@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+	<title>HomeWork</title>
+	<style>
+		#div-square {
+			width: 50px;
+			height: 50px;
+			background-color: blue;
+		}
+	</style>
+</head>
+<body>
+	<div id="div-square"></div>
+	<script>
+			let squareElem = document.getElementById('div-square');
+			squareElem.addEventListener('mousedown', mousedownEventListener);
+			
+			function mousedownEventListener(e){
+				squareElem.addEventListener('mouseup', mouseupEventListener);
+				squareElem.style.position="absolute";
+
+				function moveOnScreen(e){
+					squareElem.style.left = e.pageX - squareElem.offsetWidth / 2 + 'px';
+    				squareElem.style.top = e.pageY - squareElem.offsetHeight / 2 + 'px';
+				
+				}
+				document.onmousemove = function(event) {
+					moveOnScreen(event);
+				}
+				function mouseupEventListener(){
+					document.onmousemove = null;
+					squareElem.removeEventListener('mouseup', mouseupEventListener);
+				}	
+			}
+			// squareElem.ondragstart = function() {
+  			// 	return false;
+			// };
+	</script>
+    <!-- 
+	1. drag and drop;
+	2. создайте div, при клике на него, div начинает двигаться вправо, при клике на кнопку - останавливается,
+	при попадании div к краю окна, он переходит к началу окна.
+	-->
+</body>
+</html>
