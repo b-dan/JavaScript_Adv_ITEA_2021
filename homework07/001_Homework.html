@@ -1,0 +1,32 @@
+<!-- Создайте функцию, которая возвращает день недели для даты.
+День нужно возвратить в формате - понедельник имеет номер 1, вторник номер 2, …, воскресенье - номер 7. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+</head>
+<body>
+    <script>
+        function myDate(){
+            let enter = prompt('Enter the date as mm/dd/yyyy','');
+            let regEx = /\d{1,2}\.\d{1,2}\.\d{4}/g;
+            if(enter.match(regEx)){
+                let result = enter.match(regEx);
+                const dates = result[0].split('.');
+                let date = new Date(dates[2], dates[1]-1, dates[0]);
+                let weekDay = date.getDay();
+                if(weekDay == 0){
+                    weekDay = 7;
+                }
+                alert(weekDay);
+            }
+            else{
+                alert('Wrong format. Try again');
+                myDate();
+            }
+        }
+        myDate();
+    </script>
+</body>
+</html>

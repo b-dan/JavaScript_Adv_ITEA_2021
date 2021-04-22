@@ -1,0 +1,77 @@
+<!-- Реализуйте последние 2 слайда в презентации с помощью пройденого на уроке материала -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+    
+</head>
+<body>
+    <script>
+        class Man {
+            constructor(name){
+                this.name = name;
+            }
+            walk () {
+                return `${this.name} is walking!`;
+            }
+            eat () {
+                return `${this.name} is eating!`;
+            }
+            drink () {
+                return `${this.name} is drinking!`;
+            }
+        }
+        class Soldier extends Man{
+            constructor(name){
+                super(name);
+            }
+            shoot () {
+                return `${this.name} is shooting!`;
+            }
+        }
+        class Doctor extends Man {
+            constructor(name){
+                super(name);
+            }
+            cure () {
+                return `${this.name} is healing!`;
+            }
+        }
+        let doc = new Doctor('Dollitle');
+        let agent = new Soldier('James Bond');
+        document.write(doc.cure() + ' ' + doc.walk()+'<br>');
+        document.write(agent.shoot() + ' ' + agent.drink()+'<br>');
+        document.write('=======================================================</br>');
+        
+        function Cure(name){
+            this.name = name;
+            this.cure = function () {
+                document.write(`Я ${this.name} лечу пациента.</br>`);
+            }
+        };
+        Doctor.prototype = new Cure();
+        function Dentist(name){
+            this.name = name;
+            this.cure = function () {
+                document.write(`Я ${this.name} лечу зубы пациенту.</br>`);
+            }
+        };
+
+        function Surgeon(name){
+            this.name = name;
+            this.cure = function () {
+                document.write(`Я ${this.name} делаю операцию пациенту.</br>`);
+            }
+        };
+        Surgeon.prototype = new Doctor();
+        Dentist.prototype = new Doctor();
+        let dentist = new Dentist("ToothStone");
+        let surgeon = new Surgeon("Scalpel");
+        dentist.cure();
+        surgeon.cure();
+        console.log(dentist);
+        console.log(surgeon);
+    </script>
+</body>
+</html>
